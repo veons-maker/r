@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Mining Clicker Deluxe</title>
+
+<style>
+body{
+    background:#121212;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+}
+
+button{
+    padding:15px;
+    margin:10px;
+    font-size:20px;
+    border-radius:10px;
+}
+
+#mine{
+    width:220px;
+    height:90px;
+    font-size:30px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>⛏️ Mining Clicker Deluxe</h1>
+
+<h2>🪨 Stone: <span id="stone">0</span></h2>
+<h2>💰 Coin: <span id="coin">0</span></h2>
+<h2>⛏️ Pickaxe Lv: <span id="level">1</span></h2>
+<h2>🤖 Auto Miner: <span id="auto">0</span></h2>
+
+<button id="mine" onclick="mine()">🪨 MINE</button>
+<br>
+
+<button onclick="sellStone()">
+💰 Jual 10 Stone
+</button>
+
+<button onclick="upgradePickaxe()">
+⬆ Upgrade Pickaxe (50 Coin)
+</button>
+
+<button onclick="buyAutoMiner()">
+🤖 Auto Miner (100 Coin)
+</button>
+
+<script>
+
+let stone = 0;
+let coin = 0;
+let level = 1;
+let autoMiner = 0;
+
+function update(){
+    document.getElementById("stone").innerText = stone;
+    document.getElementById("coin").innerText = coin;
+    document.getElementById("level").innerText = level;
+    document.getElementById("auto").innerText = autoMiner;
+}
+
+function mine(){
+    stone += level;
+    update();
+}
+
+function sellStone(){
+    if(stone >= 10){
+        stone -= 10;
+        coin += 10;
+        update();
+    }
+}
+
+function upgradePickaxe(){
+    if(coin >= 50){
+        coin -= 50;
+        level++;
+        update();
+    }
+}
+
+function buyAutoMiner(){
+    if(coin >= 100){
+        coin -= 100;
+        autoMiner++;
+        update();
+    }
+}
+
+setInterval(function(){
+    stone += autoMiner;
+    update();
+},1000);
+
+update();
+
+</script>
+
+</body>
+</html>
